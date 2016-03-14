@@ -1,39 +1,28 @@
-import requests
+from main import all_names, all_movies, all_vehicles, specific_names, specific_movies, specific_vehicles
 
+while True:
+    print("Welcome to the Star Wars Database Search System")
+    sw_input = input("For all movies, enter 1. All people, 2. All vehicles, 3. Or for more options, enter 4. ")
 
-def get_json_response(key, url):
-    response = requests.get(url)
-    json_response = response.json()
-    return json_response[key]
+    if sw_input == "1":
+        all_movies()
 
+    elif sw_input == "2":
+        all_names()
 
-def all_names():
-    url = "http://swapi.co/api/people/"
-    all_results = get_json_response("results", url)
-    for person in all_results:
-        print(person["name"])
+    elif sw_input == "3":
+        all_vehicles()
 
-
-def specific_names():
-    url = "http://swapi.co/api/people/"
-    all_results = get_json_response("results", url)
-    for person in all_results:
-        number = (person["url"][26:])
-        new_url = "http://swapi.co/api/people" + number
-        for person in get_json_response("films", new_url):
-            print(get_json_response("title", person))
-specific_names()
-
-
-def all_movies():
-    url = "http://swapi.co/api/films/"
-    all_results = get_json_response("results", url)
-    for person in all_results:
-        print(person["title"])
-
-
-def all_vehicles():
-    url = "http://swapi.co/api/vehicles/"
-    all_results = get_json_response("results", url)
-    for person in all_results:
-        print(person["name"])
+    elif sw_input == "4":
+        specific_input = input("For a specific character, enter 1. Movie, enter 2. Vehicle, enter 3. ")
+        if specific_input == "1":
+            specific_names()
+        elif specific_input == "2":
+            specific_movies()
+        elif specific_input == "3":
+            specific_vehicles()
+        else:
+            print("Invalid input.")
+    else:
+        print("Invalid input. Must be 1, 2, or 3.")
+        continue
