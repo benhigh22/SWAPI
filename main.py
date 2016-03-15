@@ -1,7 +1,10 @@
-from main import all_names, all_movies, all_vehicles, specific_names, specific_movies, specific_vehicles
+from functions import all_names, all_movies, all_vehicles, specific_names, specific_movies, specific_vehicles
 
 while True:
     print("Welcome to the Star Wars Database Search System")
+    print("Hint: If you want information about a specific person, movie, or vehicle, ")
+    print("but don't remember the exact name, look at the list of what you're searching first!")
+    print("")
     sw_input = input("For all movies, enter 1. All people, 2. All vehicles, 3. Or for more options, enter 4. ")
 
     if sw_input == "1":

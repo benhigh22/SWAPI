@@ -24,9 +24,21 @@ def get_specific_info(key, url):
 
 
 def all_names():
+    next_set = get_json_response('next', character_url)
     all_results = get_json_response("results", character_url)
     for character in all_results:
         print(character["name"])
+    if next_set:
+        while True:
+            next_input = input("Would you like to see the next set of results? Enter y/n. ").lower()
+            if next_input == "y":
+                next_results = get_json_response("results", next_set)
+                for character in next_results:
+                    print(character["name"])
+            elif next_input == "n":
+                break
+            else:
+                continue
 
 
 def specific_names():
